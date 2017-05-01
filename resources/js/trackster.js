@@ -1,16 +1,31 @@
+var Trackster = {};
 $(document).ready(function() {
 
 $('#search-button').click(function() {
   Trackster.searchTracksByTitle($('#search-text').val());
+  });
 });
-var Trackster = {};
 
 /*
   Given an array of track data, create the HTML for a Bootstrap row for each.
   Append each "row" to the container in the body to display all tracks.
 */
 Trackster.renderTracks = function(tracks) {
-
+for (var trackList = 0; trackList < tracks.length; trackList++) {
+  console.log(tracks[trackList]);
+var trackRow =
+  '<div class="row">' +
+  '  <a href="https://p.scdn.co/mp3-preview/22bf10aff02db272f0a053dff5c0063d729df988?cid=null">' +
+  '    <i class="fa fa-play-circle-o fa-2x col-xs-1 col-xs-offset-1" aria-hidden="true"></i>' +
+  '  </a>' +
+  '  <h2 class="col-xs-4">' + tracks[trackList].name + '</h2>' +
+  '  <h2 class="col-xs-2">' + tracks[trackList].artists[0].name + '</h2>' +
+  '  <h2 class="col-xs-2">' + tracks[trackList].album.name + '</h2>' +
+  '  <h2 class="col-xs-2">' + tracks[trackList].popularity + '</h2>' +
+  '</div>';
+  console.log(tracks[trackList]);
+  $('#song-list').append(trackRow);
+}
 };
 
 /*
@@ -21,8 +36,7 @@ Trackster.searchTracksByTitle = function(title) {
   $.ajax({
     url: 'https://api.spotify.com/v1/search?type=track&q=' + title,
     success: function(response) {
-      console.log(response.tracks.items);
+      Trackster.renderTracks(response.tracks.items);
     }
   });
 };
-});
