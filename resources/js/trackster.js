@@ -12,10 +12,9 @@ $('#search-button').click(function() {
 */
 Trackster.renderTracks = function(tracks) {
 for (var trackList = 0; trackList < tracks.length; trackList++) {
-  console.log(tracks[trackList]);
 var trackRow =
   '<div class="row">' +
-  '  <a href="https://p.scdn.co/mp3-preview/22bf10aff02db272f0a053dff5c0063d729df988?cid=null">' +
+  '  <a href="' + tracks[trackList].preview_url + '"target="_blank">' +
   '    <i class="fa fa-play-circle-o fa-2x col-xs-1 col-xs-offset-1" aria-hidden="true"></i>' +
   '  </a>' +
   '  <h2 class="col-xs-4">' + tracks[trackList].name + '</h2>' +
@@ -23,7 +22,6 @@ var trackRow =
   '  <h2 class="col-xs-2">' + tracks[trackList].album.name + '</h2>' +
   '  <h2 class="col-xs-2">' + tracks[trackList].popularity + '</h2>' +
   '</div>';
-  console.log(tracks[trackList]);
   $('#song-list').append(trackRow);
 }
 };
