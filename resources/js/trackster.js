@@ -2,6 +2,7 @@ var Trackster = {};
 $(document).ready(function() {
 
 $('#search-button').click(function() {
+
   Trackster.searchTracksByTitle($('#search-text').val());
   });
 });
@@ -11,6 +12,7 @@ $('#search-button').click(function() {
   Append each "row" to the container in the body to display all tracks.
 */
 Trackster.renderTracks = function(tracks) {
+$('#song-list').empty();
 for (var trackList = 0; trackList < tracks.length; trackList++) {
 var trackRow =
   '<div class="row">' +
