@@ -1,11 +1,17 @@
 var Trackster = {};
 $(document).ready(function() {
 
-$('#search-button').click(function() {
+  $('#search-button').click(function() {
+    Trackster.searchTracksByTitle($('#search-text').val());
+  });
 
-  Trackster.searchTracksByTitle($('#search-text').val());
+  $('#search-text').keypress(function(e) {
+    if(e.which === 13) {
+      $('#search-button').click();
+    }
   });
 });
+
 
 /*
   Given an array of track data, create the HTML for a Bootstrap row for each.
@@ -15,7 +21,7 @@ Trackster.renderTracks = function(tracks) {
 $('#song-list').empty();
 for (var trackList = 0; trackList < tracks.length; trackList++) {
 var trackRow =
-  '<div class="row">' +
+  '<div class="row list-row">' +
   '  <a href="' + tracks[trackList].preview_url + '"target="_blank">' +
   '    <i class="fa fa-play-circle-o fa-2x col-xs-1 col-xs-offset-1" aria-hidden="true"></i>' +
   '  </a>' +
