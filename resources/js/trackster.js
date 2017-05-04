@@ -20,15 +20,21 @@ $(document).ready(function() {
 Trackster.renderTracks = function(tracks) {
 $('#song-list').empty();
 for (var trackList = 0; trackList < tracks.length; trackList++) {
+  var timems = tracks[trackList].duration_ms;
+  var timemin = (timems/1000)/60;
+  var secs = (timemin - Math.trunc(timemin))*60;
+  var minutes = Math.trunc(timemin);
+  var seconds = secs.toFixed(0);
 var trackRow =
   '<div class="row list-row">' +
   '  <a href="' + tracks[trackList].preview_url + '"target="_blank">' +
-  '    <i class="fa fa-play-circle-o fa-2x col-xs-1 col-xs-offset-1" aria-hidden="true"></i>' +
+  '    <i class="fa fa-play-circle-o fa-2x col-xs-1" aria-hidden="true"></i>' +
   '  </a>' +
-  '  <h2 class="col-xs-4">' + tracks[trackList].name + '</h2>' +
+  '  <h2 class="col-xs-3">' + tracks[trackList].name + '</h2>' +
   '  <h2 class="col-xs-2">' + tracks[trackList].artists[0].name + '</h2>' +
   '  <h2 class="col-xs-2">' + tracks[trackList].album.name + '</h2>' +
   '  <h2 class="col-xs-2">' + tracks[trackList].popularity + '</h2>' +
+  '  <h2 class="col-xs-2">' + minutes + ':' + seconds + '</h2>' +
   '</div>';
   $('#song-list').append(trackRow);
 }
