@@ -20,11 +20,17 @@ $(document).ready(function() {
 Trackster.renderTracks = function(tracks) {
 $('#song-list').empty();
 for (var trackList = 0; trackList < tracks.length; trackList++) {
+  console.log(tracks[trackList]);
   var timems = tracks[trackList].duration_ms;
   var timemin = (timems/1000)/60;
-  var secs = (timemin - Math.trunc(timemin))*60;
   var minutes = Math.trunc(timemin);
+  var secs = (timemin - minutes)*60;
   var seconds = secs.toFixed(0);
+  if (seconds.length < 2) {
+    seconds = '0' + seconds;
+  } else {
+    seconds = seconds;
+  }
 var trackRow =
   '<div class="row list-row">' +
   '  <a href="' + tracks[trackList].preview_url + '"target="_blank">' +
